@@ -20,6 +20,8 @@
     --shadow:0 20px 50px rgba(0,0,0,.35);
     --radius:26px;
     --max:1220px;
+    --wa-green:#25D366;
+    --wa-green-dark:#1ebe5d;
   }
 
   *{box-sizing:border-box}
@@ -68,7 +70,7 @@
 
   .brand{
     display:flex;
-    gap:16px;
+    gap:14px;
     align-items:center;
     min-width:0;
   }
@@ -89,24 +91,38 @@
   }
 
   .logo{
-    flex:0 0 102px;
-    width:102px;
-    height:72px;
+    flex:0 0 74px;
+    width:74px;
+    height:74px;
     display:flex;
     align-items:center;
     justify-content:center;
-    background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.03));
-    border:1px solid rgba(202,168,121,.35);
+    background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));
+    border:1px solid rgba(202,168,121,.18);
     border-radius:18px;
     padding:8px;
-    box-shadow:0 12px 28px rgba(0,0,0,.28);
+    box-shadow:0 10px 24px rgba(0,0,0,.22);
     overflow:hidden;
+    transition:transform .28s ease, box-shadow .28s ease, border-color .28s ease, background .28s ease;
+  }
+
+  .logo:hover{
+    transform:translateY(-2px) scale(1.04);
+    border-color:rgba(231,200,159,.38);
+    box-shadow:0 16px 30px rgba(0,0,0,.30);
+    background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.03));
   }
 
   .logo img{
     width:100%;
     height:100%;
     object-fit:contain;
+    transition:transform .3s ease, filter .3s ease;
+  }
+
+  .logo:hover img{
+    transform:scale(1.06);
+    filter:brightness(1.05);
   }
 
   .menu{
@@ -118,25 +134,29 @@
 
   .menu a{
     position:relative;
-    transition:.25s ease;
+    padding:6px 0;
+    transition:color .25s ease;
   }
 
   .menu a::after{
     content:"";
     position:absolute;
-    left:0;
-    bottom:-8px;
+    left:50%;
+    bottom:-4px;
     width:0;
     height:2px;
+    border-radius:999px;
     background:linear-gradient(90deg,var(--accent2),var(--accent));
-    transition:.25s ease;
+    transform:translateX(-50%);
+    transition:width .28s ease;
   }
 
   .menu a:hover{
     color:var(--accent2);
   }
 
-  .menu a:hover::after{
+  .menu a:hover::after,
+  .menu a:focus-visible::after{
     width:100%;
   }
 
@@ -157,6 +177,13 @@
     padding:12px 0;
     border-top:1px solid var(--border);
     color:#e8dcc9;
+    position:relative;
+    transition:color .25s ease, padding-left .25s ease;
+  }
+
+  .mobile-menu a:hover{
+    color:var(--accent2);
+    padding-left:8px;
   }
 
   .hero{
@@ -575,20 +602,29 @@
     display:inline-flex;
     align-items:center;
     justify-content:center;
-    background:linear-gradient(180deg,#e7c89f,#caa879);
-    color:#111;
-    padding:13px 18px;
+    gap:10px;
+    background:linear-gradient(180deg,var(--wa-green),var(--wa-green-dark));
+    color:#fff;
+    padding:14px 18px;
     border-radius:999px;
     font-weight:700;
-    border:1px solid rgba(231,200,159,.35);
-    box-shadow:0 14px 30px rgba(0,0,0,.30);
-    transition:.28s ease;
+    border:1px solid rgba(255,255,255,.15);
+    box-shadow:0 16px 34px rgba(0,0,0,.30);
+    transition:transform .28s ease, box-shadow .28s ease, filter .28s ease;
     z-index:50;
   }
 
   .wa:hover{
     transform:translateY(-3px) scale(1.03);
-    box-shadow:0 18px 32px rgba(0,0,0,.32);
+    box-shadow:0 20px 36px rgba(0,0,0,.34);
+    filter:brightness(1.04);
+  }
+
+  .wa-icon{
+    width:22px;
+    height:22px;
+    flex:0 0 22px;
+    display:block;
   }
 
   .reveal{
@@ -615,10 +651,11 @@
       gap:12px;
     }
     .logo{
-      flex:0 0 82px;
-      width:82px;
-      height:58px;
-      padding:6px;
+      flex:0 0 62px;
+      width:62px;
+      height:62px;
+      padding:7px;
+      border-radius:16px;
     }
     .brand-text strong{
       font-size:14px;
@@ -638,12 +675,18 @@
   @media(max-width:560px){
     .hero-copy h1{font-size:28px}
     .logo{
-      flex:0 0 72px;
-      width:72px;
-      height:50px;
+      flex:0 0 54px;
+      width:54px;
+      height:54px;
+      padding:6px;
+      border-radius:14px;
     }
     .eyebrow{font-size:11px}
-    .wa{left:16px;right:16px;text-align:center}
+    .wa{
+      left:16px;
+      right:16px;
+      text-align:center;
+    }
   }
 </style>
 </head>
@@ -651,7 +694,9 @@
   <header>
     <div class="container nav">
       <div class="brand">
-        <div class="logo"><img src="logo.png" alt="Mugy Teks Logo" onerror="this.parentNode.innerHTML='MT'" /></div>
+        <div class="logo">
+          <img src="header-logo.png" alt="Mugy Teks Logo" onerror="this.src='logo.png'; this.onerror=null;" />
+        </div>
         <div class="brand-text">
           <strong>MUGY TEKS GİYİM SAN. ve TİC. LTD. ŞTİ.</strong>
           <div>Entegre Tekstil Üretim Tesisi</div>
@@ -684,7 +729,7 @@
         <h1>Kesimden pakete kadar tüm süreçleri yöneten güçlü, modern ve kurumsal üretim altyapısı.</h1>
         <p class="lead">Mugy Teks, üretimin her aşamasını aynı operasyon yapısı içinde yöneterek kalite standardı, termin disiplini ve sürdürülebilir imalat gücü sunar. Kurumsal iş ortaklarına, fason üretim taleplerine ve düzenli sipariş akışına uygun profesyonel çözümler geliştirir.</p>
         <div class="actions">
-          <a class="btn primary" href="https://wa.me/905428967570">WhatsApp ile Ulaşın</a>
+          <a class="btn primary" href="https://wa.me/905428967570" target="_blank" rel="noopener noreferrer">WhatsApp ile Ulaşın</a>
           <a class="btn secondary" href="#iletisim">Teklif Talep Edin</a>
         </div>
         <div class="stats">
@@ -712,7 +757,7 @@
               <h3 style="margin:14px 0 8px">Kurumsal marka görünümü</h3>
               <p style="color:var(--muted);line-height:1.7">Logo yerleşimi için ayrılmış premium alan.</p>
             </div>
-            <div class="mini-logo"><img src="logo.png" alt="Mugy Teks Logo" /></div>
+            <div class="mini-logo"><img src="header-logo.png" alt="Mugy Teks Logo" onerror="this.src='logo.png'; this.onerror=null;" /></div>
           </div>
           <div class="card mini-card reveal">
             <div>
@@ -849,7 +894,13 @@
     </div>
   </footer>
 
-  <a class="wa" href="https://wa.me/905428967570">WhatsApp</a>
+  <a class="wa" href="https://wa.me/905428967570" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp ile iletişime geçin">
+    <svg class="wa-icon" viewBox="0 0 32 32" aria-hidden="true">
+      <path fill="currentColor" d="M19.11 17.34c-.27-.14-1.59-.78-1.83-.87-.24-.09-.42-.14-.59.14-.17.27-.68.87-.83 1.05-.15.18-.31.2-.58.07-.27-.14-1.12-.41-2.14-1.31-.79-.71-1.33-1.58-1.49-1.85-.15-.27-.02-.42.12-.56.12-.12.27-.31.41-.46.14-.15.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.59-1.43-.81-1.96-.21-.51-.43-.44-.59-.45h-.5c-.18 0-.48.07-.73.34-.25.27-.96.94-.96 2.28s.98 2.63 1.12 2.81c.14.18 1.91 2.91 4.63 4.08.65.28 1.16.44 1.56.56.66.21 1.26.18 1.73.11.53-.08 1.59-.65 1.82-1.27.22-.62.22-1.15.15-1.27-.06-.12-.24-.2-.5-.34z"/>
+      <path fill="currentColor" d="M16.03 3.2c-7.07 0-12.8 5.73-12.8 12.8 0 2.26.59 4.46 1.71 6.4L3.2 28.8l6.57-1.71a12.74 12.74 0 0 0 6.26 1.62h.01c7.06 0 12.79-5.74 12.79-12.8 0-3.42-1.33-6.63-3.75-9.05A12.71 12.71 0 0 0 16.03 3.2zm0 23.35h-.01a10.6 10.6 0 0 1-5.39-1.47l-.39-.23-3.9 1.02 1.04-3.8-.25-.39a10.61 10.61 0 1 1 8.9 4.87z"/>
+    </svg>
+    <span>WhatsApp</span>
+  </a>
 
   <script>
     const menuToggle = document.getElementById('menuToggle');
